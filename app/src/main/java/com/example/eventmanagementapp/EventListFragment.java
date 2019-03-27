@@ -17,6 +17,7 @@ import android.view.ViewGroup;
  */
 public class EventListFragment extends Fragment {
     private RecyclerView recyclerView;
+    private EventAdapter adapter;
 
 
     public EventListFragment() {
@@ -38,5 +39,7 @@ public class EventListFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new EventAdapter(Event.generateEventList());
+        recyclerView.setAdapter(adapter);
     }
 }
