@@ -1,18 +1,21 @@
 package com.example.eventmanagementapp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Event {
     private int image;
     private String eventName;
     private String eventCategory;
-    private String eventDetails;
     private String eventLocation;
+    private String eventDate;
 
-    public Event(int image, String eventName, String eventCategory, String eventDetails, String eventLocation) {
+    public Event(int image, String eventName, String eventCategory, String eventLocation, String eventDate) {
         this.image = image;
         this.eventName = eventName;
         this.eventCategory = eventCategory;
-        this.eventDetails = eventDetails;
         this.eventLocation = eventLocation;
+        this.eventDate = eventDate;
     }
 
     public int getImage() {
@@ -27,11 +30,24 @@ public class Event {
         return eventCategory;
     }
 
-    public String getEventDetails() {
-        return eventDetails;
-    }
-
     public String getEventLocation() {
         return eventLocation;
+    }
+
+    public String getEventDate() {
+        return eventDate;
+    }
+
+    public static List<Event>generateEventList(){
+        List<Event> eventList = new ArrayList<>();
+            eventList.add(new Event(R.drawable.convocation, "Convocation", "versity", "Banani", "08/05/2019"));
+            eventList.add(new Event(R.drawable.festival, "Festival", "festival", "Bashundhara", "21/03/2018"));
+            eventList.add(new Event(R.drawable.job_fair, "Job Fair", "carrer", "Dhanmondi", "12/06/2019"));
+            eventList.add(new Event(R.drawable.math_olympiad, "Math Olympiad", "olympiad", "Karawn Bazar", "25/02/2017"));
+            eventList.add(new Event(R.drawable.pro_contest, "Programming Contest", "programming", "Gulshan", "03/09/2016"));
+            eventList.add(new Event(R.drawable.reunion, "Reunion", "versity", "Sahabag", "05/10/2013"));
+            eventList.add(new Event(R.drawable.robotics, "Robotics Contest", "robotics", "Baridhara", "31/03/2019"));
+            eventList.add(new Event(R.drawable.science_olympiad, "Science Olympiad", "olympiad", "Panthopath", "07/12/2015"));
+            return eventList;
     }
 }
