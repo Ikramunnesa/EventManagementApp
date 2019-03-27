@@ -6,7 +6,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="7dp"
     app:cardElevation="6dp"
-    app:cardCornerRadius="3dp">
+    app:cardCornerRadius="3dp"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,9 +17,9 @@
         
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="190dp"
             android:id="@+id/row_imageview"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/event"
             android:scaleType="centerCrop"/>
 
         <RelativeLayout
@@ -52,7 +54,7 @@
                 android:id="@+id/row_menu"
                 tools:text="&#8942;"
                 android:textSize="25sp"
-                android:padding="8dp"
+                android:padding="9dp"
                 android:layout_centerInParent="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"/>
