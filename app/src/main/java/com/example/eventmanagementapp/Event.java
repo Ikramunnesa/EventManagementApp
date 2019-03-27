@@ -4,22 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
-    private int image;
+    private int eventID;
     private String eventName;
     private String eventCategory;
     private String eventLocation;
     private String eventDate;
 
-    public Event(int image, String eventName, String eventCategory, String eventLocation, String eventDate) {
-        this.image = image;
+    public Event(int eventID, String eventName, String eventCategory, String eventLocation, String eventDate) {
+        this.eventID = eventID;
         this.eventName = eventName;
         this.eventCategory = eventCategory;
         this.eventLocation = eventLocation;
         this.eventDate = eventDate;
     }
 
-    public int getImage() {
-        return image;
+    public Event(String eventName, String eventCategory, String eventLocation, String eventDate) {
+        this.eventName = eventName;
+        this.eventCategory = eventCategory;
+        this.eventLocation = eventLocation;
+        this.eventDate = eventDate;
+    }
+
+    public int getEventID() {
+        return eventID;
     }
 
     public String getEventName() {
