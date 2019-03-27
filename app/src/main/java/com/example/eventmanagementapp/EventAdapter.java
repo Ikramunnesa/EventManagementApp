@@ -21,11 +21,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     @Override
     public EventViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.event_row, viewGroup, false);
-        return null;
+        return new EventViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EventViewHolder eventViewHolder, int i) {
+    public void onBindViewHolder(@NonNull EventViewHolder holder, int i) {
+        final Event event = eventList.get(i);
+        holder.imageView.setImageResource(event.getImage());
+        holder.nameTV.setText(event.getEventName());
+        holder.locationTV.setText(event.getEventLocation());
+        holder.dateTV.setText(event.getEventDate());
 
     }
 
