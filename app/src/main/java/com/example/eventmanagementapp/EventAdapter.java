@@ -1,20 +1,27 @@
 package com.example.eventmanagementapp;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
     private List<Event> eventList;
+    private Context context;
 
-    public EventAdapter(List<Event> eventList) {
+    public EventAdapter(Context context, List<Event> eventList) {
         this.eventList = eventList;
+        this.context = context;
     }
 
     @NonNull
@@ -27,10 +34,37 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int i) {
         final Event event = eventList.get(i);
-        holder.imageView.setImageResource(event.getImage());
+        //holder.imageView.setImageResource(event.getImage());
         holder.nameTV.setText(event.getEventName());
         holder.locationTV.setText(event.getEventLocation());
         holder.dateTV.setText(event.getEventDate());
+        holder.menuTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
+                MenuInflater inflater = popupMenu.getMenuInflater();
+                inflater.inflate(R.menu.event_menu, popupMenu.getMenu());
+                popupMenu.show();
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.item_details:
+                                Toast.makeText(context, event.getEventName(), Toast.LENGTH_SHORT).show();
+
+                                break;
+                            case R.id.item_delete:
+
+                                break;
+                            case R.id.item_edit:
+
+                                break;
+                        }
+                        return false;
+                    }
+                });
+            }
+        });
 
     }
 
