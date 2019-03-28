@@ -3,7 +3,7 @@ package com.example.eventmanagementapp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event {
+public class  Event {
     private int eventID;
     private String eventName;
     private String eventCategory;
