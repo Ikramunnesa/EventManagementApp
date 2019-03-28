@@ -17,7 +17,7 @@
         
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="190dp"
+            android:layout_height="100dp"
             android:id="@+id/row_imageview"
             android:src="@drawable/event"
             android:scaleType="centerCrop"/>
@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row_menu"
-                tools:text="&#8942;"
+                android:text="@string/menu_icon"
                 android:textSize="25sp"
                 android:padding="9dp"
                 android:layout_centerInParent="true"
