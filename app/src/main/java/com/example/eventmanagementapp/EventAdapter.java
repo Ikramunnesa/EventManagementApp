@@ -13,15 +13,19 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.eventmanagementapp.eventdb.EventDateSource;
+
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
     private List<Event> eventList;
     private Context context;
+    private EventDateSource dateSource;
 
     public EventAdapter(Context context, List<Event> eventList) {
         this.eventList = eventList;
         this.context = context;
+        dateSource = new EventDateSource(context);
     }
 
     @NonNull
@@ -32,7 +36,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EventViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull EventViewHolder holder, final int i) {
         final Event event = eventList.get(i);
         //holder.imageView.setImageResource(event.getImage());
         holder.nameTV.setText(event.getEventName());
@@ -54,7 +58,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
                                 break;
                             case R.id.item_delete:
-
+                                int eventID = event.getEventID();
+                                final int deletedRow = dateSource.deleteEventById(eventID);
+                                if(deletedRow > 0){
+                                    Toast.makeText(context,"deleted", Toast.LENGTH_SHORT).show();
+                                    eventList.remove(i);
+                                    notifyDataSetChanged();
+                                }
+                                else {
+                                    Toast.makeText(context,"failed to delete", Toast.LENGTH_SHORT).show();
+                                }
                                 break;
                             case R.id.item_edit:
 
