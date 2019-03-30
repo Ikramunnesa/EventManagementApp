@@ -66,4 +66,37 @@ public class EventDateSource {
         this.closeDB();
         return deletedRow;
     }
+
+    public Event getEventById(int eventID){
+        Event event = null;
+        this.openDB();
+        Cursor cursor = db.rawQuery("select * from "+EventDBHelper.TABLE_EVENT+" where "+
+                EventDBHelper.TABLE_EVENT_COL_ID+" = "+eventID, null);
+        if(cursor != null && cursor.getCount() > 0){
+            cursor.moveToFirst();
+
+                int id = cursor.getInt(cursor.getColumnIndex(EventDBHelper.TABLE_EVENT_COL_ID));
+                String name = cursor.getString(cursor.getColumnIndex(EventDBHelper.TABLE_EVENT_COL_NAME));
+                String category = cursor.getString(cursor.getColumnIndex(EventDBHelper.TABLE_EVENT_COL_CATEGORY));
+                String location = cursor.getString(cursor.getColumnIndex(EventDBHelper.TABLE_EVENT_COL_LOCATION));
+                String date = cursor.getString(cursor.getColumnIndex(EventDBHelper.TABLE_EVENT_COL_DATE));
+                event = new Event(eventID, name, category, location, date);
+
+        }
+        cursor.close();
+        this.closeDB();
+        return event;
+    }
+
+    public int updateEventById(Event event){
+        this.openDB();
+        ContentValues values = new ContentValues();
+        values.put(EventDBHelper.TABLE_EVENT_COL_NAME, event.getEventName());
+        values.put(EventDBHelper.TABLE_EVENT_COL_CATEGORY, event.getEventCategory());
+        values.put(EventDBHelper.TABLE_EVENT_COL_LOCATION, event.getEventLocation());
+        values.put(EventDBHelper.TABLE_EVENT_COL_DATE, event.getEventDate());
+        final int updatedRow = db.update(EventDBHelper.TABLE_EVENT, values,EventDBHelper.TABLE_EVENT_COL_ID+" = "+event.getEventID(), null);
+        this.closeDB();
+        return updatedRow;
+    }
 }
