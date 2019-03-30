@@ -10,11 +10,11 @@ import com.example.eventmanagementapp.Event;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventDateSource {
+public class EventDataSource {
     private EventDBHelper dbHelper;
     private SQLiteDatabase db;
 
-    public EventDateSource(Context context){
+    public EventDataSource(Context context){
         dbHelper = new EventDBHelper(context);
     }
 
