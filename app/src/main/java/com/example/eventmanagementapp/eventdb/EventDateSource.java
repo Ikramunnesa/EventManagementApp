@@ -59,4 +59,11 @@ public class EventDateSource {
         this.closeDB();
         return eventList;
     }
+
+    public int deleteEventById(int eventID){
+        this.openDB();
+        final int deletedRow = db.delete(EventDBHelper.TABLE_EVENT, EventDBHelper.TABLE_EVENT_COL_ID+" = "+eventID, null);
+        this.closeDB();
+        return deletedRow;
+    }
 }
