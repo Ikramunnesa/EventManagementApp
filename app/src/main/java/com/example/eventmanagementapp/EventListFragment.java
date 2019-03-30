@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.eventmanagementapp.eventdb.EventDateSource;
+import com.example.eventmanagementapp.eventdb.EventDataSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class EventListFragment extends Fragment {
     private List<Event>eventList = new ArrayList<>();
     private FloatingActionButton fab;
     private AddNewEventListener listener;
-    private EventDateSource dateSource;
+    private EventDataSource dateSource;
 
     public EventListFragment() {
         // Required empty public constructor
@@ -53,7 +53,7 @@ public class EventListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recyclerview);
         fab = view.findViewById(R.id.fab);
-        dateSource = new EventDateSource(getActivity());
+        dateSource = new EventDataSource(getActivity());
         eventList = dateSource.getAllEventsAsc();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
