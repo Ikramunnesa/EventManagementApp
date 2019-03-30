@@ -13,19 +13,21 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.eventmanagementapp.eventdb.EventDateSource;
+import com.example.eventmanagementapp.eventdb.EventDataSource;
 
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
     private List<Event> eventList;
     private Context context;
-    private EventDateSource dateSource;
+    private EventDataSource dataSource;
+    private EditEventListener editEventListener;
 
     public EventAdapter(Context context, List<Event> eventList) {
         this.eventList = eventList;
         this.context = context;
-        dateSource = new EventDateSource(context);
+        dataSource = new EventDataSource(context);
+        editEventListener = (EditEventListener) context;
     }
 
     @NonNull
@@ -58,8 +60,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
                                 break;
                             case R.id.item_delete:
-                                int eventID = event.getEventID();
-                                final int deletedRow = dateSource.deleteEventById(eventID);
+                                final int deletedRow = dataSource.deleteEventById(event.getEventID());
                                 if(deletedRow > 0){
                                     Toast.makeText(context,"deleted", Toast.LENGTH_SHORT).show();
                                     eventList.remove(i);
@@ -70,7 +71,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
                                 }
                                 break;
                             case R.id.item_edit:
-
+                                editEventListener.onEditBtnClicked(event.getEventID());
                                 break;
                         }
                         return false;
@@ -98,5 +99,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             dateTV = itemView.findViewById(R.id.row_date);
             menuTV = itemView.findViewById(R.id.row_menu);
         }
+    }
+
+    interface EditEventListener{
+        void onEditBtnClicked(int eventID);
+        void onEditComplete();
     }
 }
