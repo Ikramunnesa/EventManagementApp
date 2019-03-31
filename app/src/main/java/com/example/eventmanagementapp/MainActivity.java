@@ -1,9 +1,11 @@
 package com.example.eventmanagementapp;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements EventListFragment.AddNewEventListener, EventAdapter.EditEventListener {
     private FragmentManager fragmentManager;
@@ -53,7 +55,9 @@ public class MainActivity extends AppCompatActivity implements EventListFragment
     public void onEditComplete() {
         FragmentTransaction ft = fragmentManager.beginTransaction();
         EventListFragment eventListFragment = new EventListFragment();
-        ft.add(R.id.fragmentContainer, eventListFragment);
+        ft.replace(R.id.fragmentContainer, eventListFragment);
         ft.commit();
     }
+
+
 }
